@@ -49,7 +49,7 @@ or two, newest first, with no manual manifest editing.
 
 ## Using the admin page
 
-Open `admin.html` from the running site. In Chrome or Edge, choose the project
+Open `/manage` from the running site. In Chrome or Edge, choose the project
 folder, enter an edition date, select replacement page images if needed, and
 save. The editor writes the numbered images and `data/issues.json` directly to
 the selected folder. Changing an existing edition's date moves its page folder

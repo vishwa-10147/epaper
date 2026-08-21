@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — The Daily Chronicle</title>
+<meta name="description" content="Manage e-paper editions and page images." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body class="admin-page">
+  <header class="masthead admin-masthead">
+    <div class="masthead__top">
+      <span class="masthead__eyebrow">Edition desk</span>
+      <a class="admin-nav-link" href="../index.html">Back to paper</a>
+    </div>
+    <h1 class="masthead__title">ADMIN DESK</h1>
+    <div class="masthead__rule"></div>
+    <div class="masthead__sub">Manage editions and page images on this computer</div>
+  </header>
+
+  <main class="admin-shell">
+    <section class="admin-toolbar" aria-labelledby="admin-heading">
+      <div>
+        <p class="admin-kicker">Local publishing tools</p>
+        <h2 id="admin-heading">Edit your archive</h2>
+        <p class="admin-note">Choose the project folder to save changes directly into <code>pages/</code> and <code>data/issues.json</code>. This page is not a login system; keep the admin URL private.</p>
+      </div>
+      <div class="admin-actions">
+        <button id="choose-folder" class="admin-btn admin-btn--primary" type="button">Choose project folder</button>
+        <button id="download-manifest" class="admin-btn" type="button">Download manifest</button>
+      </div>
+    </section>
+
+    <div id="status" class="admin-status" role="status" aria-live="polite">Loading the current archive…</div>
+
+    <section class="admin-form" aria-labelledby="editor-heading">
+      <div class="admin-form__heading">
+        <div>
+          <p class="admin-kicker">Edition editor</p>
+          <h2 id="editor-heading">Add or update an edition</h2>
+        </div>
+        <button id="new-edition" class="admin-btn" type="button">New edition</button>
+      </div>
+
+      <form id="issue-form">
+        <div class="admin-fields">
+          <label>
+            Edition date
+            <input id="issue-date" name="date" type="date" required />
+          </label>
+          <label>
+            Page images
+            <input id="page-files" name="pages" type="file" accept="image/jpeg,image/png,image/webp" multiple />
+          </label>
+        </div>
+        <p class="admin-help">Select images in page order. Existing images are kept when editing unless you choose replacement images.</p>
+        <div id="selected-files" class="selected-files">No replacement images selected.</div>
+        <div class="admin-form__footer">
+          <span id="editing-label" class="editing-label">Creating a new edition</span>
+          <button class="admin-btn admin-btn--primary" type="submit">Save edition</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="admin-list" aria-labelledby="archive-heading">
+      <div class="admin-form__heading">
+        <div>
+          <p class="admin-kicker">Published data</p>
+          <h2 id="archive-heading">Archive editions</h2>
+        </div>
+        <span id="issue-count" class="admin-count">0 editions</span>
+      </div>
+      <div id="issue-list" class="issue-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Changes are written to your selected project folder. Commit and push them with Git to publish.</p>
+  </footer>
+
+  <script src="../assets/js/admin.js"></script>
+</body>
+</html>

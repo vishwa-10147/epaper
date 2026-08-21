@@ -89,7 +89,7 @@
 
   async function loadManifest() {
     try {
-      const response = await fetch("data/issues.json", { cache: "no-store" });
+      const response = await fetch("../data/issues.json", { cache: "no-store" });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
       issues = Array.isArray(data.issues) ? data.issues : [];
