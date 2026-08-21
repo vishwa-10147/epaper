@@ -125,12 +125,28 @@
     await writable.close();
   }
 
+  async function copyIssuePages(pagesDirectory, oldDate, newDirectory, pagePaths) {
+    const oldDirectory = await pagesDirectory.getDirectoryHandle(oldDate);
+    for (let index = 0; index < pagePaths.length; index += 1) {
+      const filename = pagePaths[index].split("/").pop();
+      const file = await (await oldDirectory.getFileHandle(filename)).getFile();
+      await writeFile(newDirectory, filename, file);
+    }
+  }
+
   async function saveIssue(date, files) {
     if (!projectHandle) throw new Error("Choose the project folder first.");
     const pagesDirectory = await getDirectory(projectHandle, "pages");
     const issueDirectory = await getDirectory(pagesDirectory, date);
     const existing = issues.find((issue) => issue.date === date);
-    const pagePaths = existing ? [...existing.pages] : [];
+    const movedIssue = editingDate && editingDate !== date
+      ? issues.find((issue) => issue.date === editingDate)
+      : null;
+    const pagePaths = movedIssue
+      ? movedIssue.pages.map((pagePath) => pagePath.replace(editingDate, date))
+      : existing ? [...existing.pages] : [];
+
+    if (movedIssue && !files.length) await copyIssuePages(pagesDirectory, editingDate, issueDirectory, movedIssue.pages);
 
     for (let index = 0; index < files.length; index += 1) {
       const extension = files[index].name.match(/\.(jpe?g|png|webp)$/i)[1].toLowerCase();
@@ -142,6 +158,10 @@
     if (!pagePaths.length) throw new Error("Add at least one page image.");
     const nextIssue = { date, pageCount: pagePaths.length, pages: pagePaths };
     issues = issues.filter((issue) => issue.date !== date);
+    if (movedIssue) {
+      issues = issues.filter((issue) => issue.date !== editingDate);
+      await pagesDirectory.removeEntry(editingDate, { recursive: true });
+    }
     issues.push(nextIssue);
     sortIssues();
     const dataDirectory = await getDirectory(projectHandle, "data");
