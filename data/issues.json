@@ -1,0 +1,24 @@
+{
+  "issues": [
+    {
+      "date": "2026-08-21",
+      "pageCount": 4,
+      "pages": [
+        "pages/2026-08-21/1.jpg",
+        "pages/2026-08-21/2.jpg",
+        "pages/2026-08-21/3.jpg",
+        "pages/2026-08-21/4.jpg"
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "pageCount": 4,
+      "pages": [
+        "pages/2026-08-20/1.jpg",
+        "pages/2026-08-20/2.jpg",
+        "pages/2026-08-20/3.jpg",
+        "pages/2026-08-20/4.jpg"
+      ]
+    }
+  ]
+}

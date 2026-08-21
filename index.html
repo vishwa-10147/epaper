@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Daily Chronicle — E-Paper</title>
+<meta name="description" content="Digital replica of the daily print edition, page by page." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead__top">
+      <span class="masthead__eyebrow" id="masthead-date">—</span>
+      <span class="masthead__eyebrow masthead__eyebrow--right"><a class="admin-nav-link" href="admin.html">Admin</a> · Digital Edition</span>
+    </div>
+    <h1 class="masthead__title" id="site-title">THE DAILY CHRONICLE</h1>
+    <div class="masthead__rule"></div>
+    <div class="masthead__sub">
+      <span id="edition-count">Loading editions…</span>
+      <span class="masthead__sep">·</span>
+      <span>Free to read, no login required</span>
+    </div>
+  </header>
+
+  <main class="viewer" id="viewer">
+    <div class="viewer__controls">
+      <button id="prev-page" class="ctrl-btn" aria-label="Previous page">&#8592;</button>
+      <div class="viewer__pageinfo">
+        <span id="page-indicator">— / —</span>
+      </div>
+      <button id="next-page" class="ctrl-btn" aria-label="Next page">&#8594;</button>
+      <button id="fullscreen-btn" class="ctrl-btn ctrl-btn--ghost" aria-label="Toggle fullscreen">⤢</button>
+    </div>
+
+    <div class="book-stage">
+      <div id="book" class="book"></div>
+      <p id="loading-msg" class="loading-msg">Opening today's edition…</p>
+      <p id="empty-msg" class="empty-msg" hidden>
+        No editions published yet. Drop page images into <code>pages/YYYY-MM-DD/</code> and push —
+        the archive will pick them up automatically.
+      </p>
+    </div>
+  </main>
+
+  <section class="rack" aria-label="Past editions">
+    <div class="rack__header">
+      <span class="rack__clip" aria-hidden="true"></span>
+      <h2>Archive</h2>
+    </div>
+    <div class="rack__strip" id="rack-strip">
+      <!-- edition thumbnails injected here -->
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>Built as a static e-paper reader — pages are plain images, no server required.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
